@@ -150,6 +150,8 @@ class TrustWeb3Provider extends EventEmitter {
         case "eth_signTypedData":
         case "eth_signTypedData_v3":
           return this.eth_signTypedData(payload);
+        case "eth_signTypedData_v4":
+           return this.eth_signTypedData_v4(payload);
         case "eth_sendTransaction":
           return this.eth_sendTransaction(payload);
         case "eth_requestAccounts":
@@ -213,6 +215,10 @@ class TrustWeb3Provider extends EventEmitter {
 
   eth_signTypedData(payload) {
     this.postMessage("signTypedMessage", payload.id, {data: payload.params[1]});
+  }
+
+  eth_signTypedData_v4(payload) {
+    this.postMessage("signTypedMessageV4", payload.id, {data: payload.params[1]});
   }
 
   eth_sendTransaction(payload) {
